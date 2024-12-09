@@ -13,7 +13,7 @@ const Mobilenav = ({ onCloseMenu, openMenu }: MobileNav) => {
       }`}
     >
       <div className=" text-[#857878] text-3xl cursor-pointer flex justify-end items-center">
-        <IoIosCloseCircle onClick={onCloseMenu} />
+        <IoIosCloseCircle onClick={()=> onCloseMenu(false)} />
       </div>
       <ul className="flex flex-col gap-6 font-Oswald text-lg mt-5">
         <li

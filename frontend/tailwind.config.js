@@ -15,8 +15,20 @@ export default {
     extend: {
       fontFamily: {
         Oswald: ["Oswald", "sans-serif"],
+        KellySlab: ["'Roboto Slab'", "serif"],
+      },
+      textShadow: {
+        customRed: '4px 3px 4px rgba(255, 0, 0, 0.5)',
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      addUtilities({
+        '.text-shadow-customRed': {
+          textShadow: '4px 3px 4px rgba(255, 0, 0, 0.5)', 
+        },
+      });
+    },
+  ],
 };

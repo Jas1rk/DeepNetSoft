@@ -1,6 +1,5 @@
-import React from "react";
-import { DeskTopNavbar } from "..";
 
+import { DeskTopNavbar } from "..";
 
 const Nav = () => {
   return (
