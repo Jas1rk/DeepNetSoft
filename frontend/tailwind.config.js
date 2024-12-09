@@ -12,6 +12,11 @@ export default {
         xl: "1280px",
       },
     },
+    extend: {
+      fontFamily: {
+        Oswald: ["Oswald", "sans-serif"],
+      },
+    },
   },
   plugins: [],
 };
