@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { FormType } from "../Types/MenuTypes";
-const backendUrl = "http://localhost:5000";
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 
 const UseFetchMenu = () => {
