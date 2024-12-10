@@ -46,7 +46,7 @@ const SmallSection = () => {
             ))}
         </div>
       </section>
-      {selectMenu && <MenuSection selectedMenu={selectMenu} />}
+      <MenuSection selectedMenu={selectMenu} />
     </>
   );
 };

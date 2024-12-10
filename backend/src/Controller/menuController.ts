@@ -41,6 +41,7 @@ export const createMenu = async (req: Request, res: Response): Promise<void> => 
 export const getMenu = async (req: Request, res: Response): Promise<void> => {
     try {
         const fetchMenu = await Menu.find({})
+        console.log(fetchMenu)
         res.status(200).json(fetchMenu)
     } catch (error) {
         console.log(error)

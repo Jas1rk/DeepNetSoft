@@ -13,6 +13,7 @@ const UseFetchMenu = () => {
         const response = await axios.get(`${backendUrl}/create-menu`);
         setMenuItems(response.data);
       } catch (error) {
+        console.log(error,"<><>")
         toast.error("error");
       }
     };
