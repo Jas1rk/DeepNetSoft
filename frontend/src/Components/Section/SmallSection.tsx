@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import MenuSection from "./MenuSection";
 
 const SmallSection = () => {
-  const { menuItems } = UseFetchMenu();
+  const { menuItems  } = UseFetchMenu();
   const [selectMenu, setSelectMenu] = useState<any>(null);
   const [activeIndex, setActiveIndex] = useState<number>();
 
