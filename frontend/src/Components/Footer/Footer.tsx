@@ -10,7 +10,7 @@ import { FaInstagram } from "react-icons/fa6";
 
 const Footer = () => {
   return (
-    <footer className="w-screen container p-8">
+    <footer className="w-screen container p-8 mt-10 pb-16">
       <div className=" mx-auto p-3 w-full flex flex-col md:flex-row justify-around gap-5">
         <div className=" md:hidden border md:w-[373px] rounded-xl flex flex-col items-center justify-center p-5 relative">
           <img

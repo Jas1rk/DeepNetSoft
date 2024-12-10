@@ -3,7 +3,6 @@ import {
   CopyRightBottom,
   FooterSection,
   Header,
-  MenuSection,
   SmallSection,
 } from "../Components";
 
@@ -13,7 +12,6 @@ const Home = () => {
       <Header />
       <Banner />
       <SmallSection />
-      <MenuSection />
       <FooterSection />
       <CopyRightBottom />
     </>

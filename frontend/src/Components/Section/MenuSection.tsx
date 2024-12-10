@@ -2,8 +2,10 @@ import menuBg from "../../public/sectionbg.png";
 import beerImage from "../../public/beer.png";
 import coctailImage from "../../public/coctail.png";
 import { CreateMenuItems } from "..";
+import UseFetchMenu from "../../Hooks/UseFetchMenu";
 
-const MenuSection = () => {
+const MenuSection = ({selectedMenu}) => {
+ 
   return (
     <>
       <section className="w-full relative">
@@ -27,34 +29,17 @@ const MenuSection = () => {
             <span className="bg-[#857878] text-3xl h-[2px] w-[68px] md:h-[3px] rounded-sm"></span>
           </div>
           <div className="md:grid md:grid-cols-2 p-3 mt-10">
-            <div className="flex flex-col p-3 mt-4">
+            {selectedMenu?.items?.map((data,index)=>(
+            <div className="flex flex-col p-3 mt-4" key={index}>
               <h1 className="text-white text-[14px] md:text-[26px] font-normal leading-[23.71px] font-Oswald">
-                CINNAMON TOAST CRUNCH..........................$16
+                {`${data.itemName}..........................$${data.price}`}
               </h1>
               <p className="font-KellySlab text-[#857878] font-normal text-[13px] md:text-[18px] md:pt-2">
-                Skrewball peanut butter whiskey, vanilla extract, Amaretto,
-                Baileys, egg white, cinnamon
+               {data.itemDescription}
               </p>
             </div>
 
-            <div className="flex flex-col p-3 mt-4">
-              <h1 className="text-white text-[14px] md:text-[26px] font-normal leading-[23.71px] font-Oswald">
-                CINNAMON TOAST CRUNCH..........................$16
-              </h1>
-              <p className="font-KellySlab text-[#857878] font-normal text-[13px] md:text-[18px] md:pt-2">
-                Skrewball peanut butter whiskey, vanilla extract, Amaretto,
-                Baileys, egg white, cinnamon
-              </p>
-            </div>
-            <div className="flex flex-col p-3 mt-4">
-              <h1 className="text-white text-[14px] md:text-[26px] font-normal leading-[23.71px] font-Oswald">
-                CINNAMON TOAST CRUNCH..........................$16
-              </h1>
-              <p className="font-KellySlab text-[#857878] font-normal text-[13px] md:text-[18px] md:pt-2">
-                Skrewball peanut butter whiskey, vanilla extract, Amaretto,
-                Baileys, egg white, cinnamon
-              </p>
-            </div>
+            ))}
           </div>
           <img
             src={coctailImage}

@@ -11,13 +11,21 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { useState } from "react";
+import axios from "axios";
+import { FormType } from "../../Types/MenuTypes";
+import { toast } from "sonner";
+
+const backendUrl = "http://localhost:5000";
 
 const CreateMenu = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    calories: "",
+  const [formData, setFormData] = useState<FormType>({
+    menu: "",
+    description: "",
+    itemName: "",
+    price: "",
+    itemsDescription: "",
   });
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -27,16 +35,41 @@ const CreateMenu = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const { menu, description, itemName, price, itemsDescription } = formData;
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form Data Submitted:", formData);
-    // Handle form submission logic here
+    const response = await axios.post(`${backendUrl}/create-menu`, {
+      menu,
+      description,
+      itemName,
+      price,
+      itemsDescription,
+    });
+    if (response.status === 200) {
+      toast.success(response.data.message);
+      setFormData({
+        menu: "",
+        description: "",
+        itemName: "",
+        price: "",
+        itemsDescription: "",
+      });
+    } else {
+      toast.error("error got");
+    }
   };
 
   return (
     <Drawer>
       <DrawerTrigger asChild>
-        <Button variant="outline" className="bg-[#0796EF] text-white ">Create</Button>
+        <Button
+          variant="outline"
+          className="bg-[#0796EF] text-white "
+         
+        >
+          Create
+        </Button>
       </DrawerTrigger>
       <DrawerContent>
         <div className="mx-auto w-full max-w-sm ">
@@ -49,64 +82,61 @@ const CreateMenu = () => {
               <input
                 type="text"
                 id="name"
-                name="name"
+                name="menu"
                 className="w-full rounded border px-3 py-2"
-                value={formData.name}
+                value={formData.menu}
                 onChange={handleChange}
-                required
                 placeholder="Menu"
               />
             </div>
             <div className="mb-4">
               <textarea
-                id="email"
-                name="email"
+                id="description"
+                name="description"
                 className="w-full rounded border px-3 py-2"
-                value={formData.email}
+                value={formData.description}
                 onChange={handleChange}
-                required
                 placeholder="Menu description"
               ></textarea>
             </div>
             <div className="mb-4">
               <input
                 type="text"
-                id="name"
-                name="name"
+                id="itemName"
+                name="itemName"
                 className="w-full rounded border px-3 py-2"
-                value={formData.name}
+                value={formData.itemName}
                 onChange={handleChange}
-                required
                 placeholder="Items"
               />
             </div>
             <div className="mb-4">
               <input
                 type="number"
-                id="calories"
-                name="calories"
+                id="price"
+                name="price"
                 className="w-full rounded border px-3 py-2"
                 placeholder="Price"
-                value={formData.calories}
+                value={formData.price}
                 onChange={handleChange}
-                required
               />
             </div>
             <div className="mb-4">
               <textarea
-                id="email"
-                name="email"
+                id="itemsDescription"
+                name="itemsDescription"
                 className="w-full rounded border px-3 py-2"
-                value={formData.email}
+                value={formData.itemsDescription}
                 onChange={handleChange}
-                required
                 placeholder="items description"
               ></textarea>
             </div>
             <DrawerFooter>
               <Button type="submit">Create</Button>
               <DrawerClose asChild>
-                <Button variant="outline">Cancel</Button>
+                <Button variant="outline">
+                  Cancel
+                </Button>
               </DrawerClose>
             </DrawerFooter>
           </form>
