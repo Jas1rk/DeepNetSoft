@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
-const backendUrl = import.meta.env.VITE_BACKEND_URL;
+const backendUrl = 'https://deepnetsoft.timetake.shop';
 
 
 const UseFetchMenu = () => {

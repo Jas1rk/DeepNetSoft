@@ -15,7 +15,7 @@ import axios from "axios";
 import { FormType } from "../../Types/MenuTypes";
 import { toast } from "sonner";
 
-const backendUrl = import.meta.env.VITE_BACKEND_URL;
+const backendUrl = 'https://deepnetsoft.timetake.shop';
 
 const CreateMenu = () => {
   const [formData, setFormData] = useState<FormType>({
