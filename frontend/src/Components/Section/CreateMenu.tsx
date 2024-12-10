@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "../ui/button";
 import {
   Drawer,
   DrawerClose,
@@ -9,13 +9,13 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "@/components/ui/drawer";
+} from "../ui/drawer";
 import { useState } from "react";
 import axios from "axios";
 import { FormType } from "../../Types/MenuTypes";
 import { toast } from "sonner";
 
-const backendUrl = import.meta.env.VITE_BACKEND_URL
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const CreateMenu = () => {
   const [formData, setFormData] = useState<FormType>({
@@ -26,8 +26,9 @@ const CreateMenu = () => {
     itemsDescription: "",
   });
 
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
@@ -39,40 +40,41 @@ const CreateMenu = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const response = await axios.post(`${backendUrl}/create-menu`, {
-      menu,
-      description,
-      itemName,
-      price,
-      itemsDescription,
-    });
-    if (response.status === 200) {
-      toast.success(response.data.message);
-      setFormData({
-        menu: "",
-        description: "",
-        itemName: "",
-        price: "",
-        itemsDescription: "",
+
+    try {
+      const response = await axios.post(`${backendUrl}/create-menu`, {
+        menu,
+        description,
+        itemName,
+        price,
+        itemsDescription,
       });
-    } else {
-      toast.error("error got");
+
+      if (response.status === 200) {
+        toast.success(response.data.message);
+        setFormData({
+          menu: "",
+          description: "",
+          itemName: "",
+          price: "",
+          itemsDescription: "",
+        });
+      }
+    } catch (error: any) {
+      const errorMessage = error.response?.data?.message || "An error occurred";
+      toast.error(errorMessage);
     }
   };
 
   return (
     <Drawer>
       <DrawerTrigger asChild>
-        <Button
-          variant="outline"
-          className="bg-[#0796EF] text-white "
-         
-        >
+        <Button variant="outline" className="bg-[#0796EF] text-white">
           Create
         </Button>
       </DrawerTrigger>
       <DrawerContent>
-        <div className="mx-auto w-full max-w-sm ">
+        <div className="mx-auto w-full max-w-sm">
           <DrawerHeader>
             <DrawerTitle>Create Entry</DrawerTitle>
             <DrawerDescription>Fill out the form below.</DrawerDescription>
@@ -81,10 +83,10 @@ const CreateMenu = () => {
             <div className="mb-4">
               <input
                 type="text"
-                id="name"
+                id="menu"
                 name="menu"
                 className="w-full rounded border px-3 py-2"
-                value={formData.menu}
+                value={menu}
                 onChange={handleChange}
                 placeholder="Menu"
               />
@@ -94,10 +96,10 @@ const CreateMenu = () => {
                 id="description"
                 name="description"
                 className="w-full rounded border px-3 py-2"
-                value={formData.description}
+                value={description}
                 onChange={handleChange}
                 placeholder="Menu description"
-              ></textarea>
+              />
             </div>
             <div className="mb-4">
               <input
@@ -105,7 +107,7 @@ const CreateMenu = () => {
                 id="itemName"
                 name="itemName"
                 className="w-full rounded border px-3 py-2"
-                value={formData.itemName}
+                value={itemName}
                 onChange={handleChange}
                 placeholder="Items"
               />
@@ -117,7 +119,7 @@ const CreateMenu = () => {
                 name="price"
                 className="w-full rounded border px-3 py-2"
                 placeholder="Price"
-                value={formData.price}
+                value={price}
                 onChange={handleChange}
               />
             </div>
@@ -126,17 +128,15 @@ const CreateMenu = () => {
                 id="itemsDescription"
                 name="itemsDescription"
                 className="w-full rounded border px-3 py-2"
-                value={formData.itemsDescription}
+                value={itemsDescription}
                 onChange={handleChange}
-                placeholder="items description"
-              ></textarea>
+                placeholder="Items description"
+              />
             </div>
             <DrawerFooter>
               <Button type="submit">Create</Button>
               <DrawerClose asChild>
-                <Button variant="outline">
-                  Cancel
-                </Button>
+                <Button variant="outline">Cancel</Button>
               </DrawerClose>
             </DrawerFooter>
           </form>

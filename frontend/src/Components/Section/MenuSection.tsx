@@ -31,7 +31,7 @@ const MenuSection = ({ selectedMenu }: MenuSec) => {
             <span className="bg-[#857878] text-3xl h-[2px] w-[68px] md:h-[3px] rounded-sm"></span>
           </div>
           <div className="md:grid md:grid-cols-2 p-3 mt-10">
-            {selectedMenu?.items?.map((data, index) => (
+            {selectedMenu?.items?.map((data:any, index:number) => (
               <div className="flex flex-col p-3 mt-4" key={index}>
                 <h1 className="text-white text-[14px] md:text-[26px] font-normal leading-[23.71px] font-Oswald">
                   {`${data.itemName}..........................$${data.price}`}

@@ -30,7 +30,7 @@ const SmallSection = () => {
         />
         <div className="absolute inset-0 bg-black opacity-80"></div>
         <div className="absolute inset-0 flex justify-center items-center px-4 text-white gap-5">
-          {menuItems?.map((data, index) => (
+          {menuItems?.map((data:any, index:number) => (
             <div
               className={`p-2 px-3 border cursor-pointer hover:bg-[#0796EF] ${
                 activeIndex === index
@@ -40,7 +40,7 @@ const SmallSection = () => {
               key={index}
               onClick={() => handleClick(data, index)}
             >
-              {data.menuName}
+              {data?.menuName}
             </div>
           ))}
         </div>
