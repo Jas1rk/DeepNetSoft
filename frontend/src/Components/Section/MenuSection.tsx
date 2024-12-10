@@ -2,10 +2,12 @@ import menuBg from "../../public/sectionbg.png";
 import beerImage from "../../public/beer.png";
 import coctailImage from "../../public/coctail.png";
 import { CreateMenuItems } from "..";
-import UseFetchMenu from "../../Hooks/UseFetchMenu";
 
-const MenuSection = ({selectedMenu}) => {
- 
+type MenuSec = {
+  selectedMenu: any;
+};
+
+const MenuSection = ({ selectedMenu }: MenuSec) => {
   return (
     <>
       <section className="w-full relative">
@@ -29,16 +31,15 @@ const MenuSection = ({selectedMenu}) => {
             <span className="bg-[#857878] text-3xl h-[2px] w-[68px] md:h-[3px] rounded-sm"></span>
           </div>
           <div className="md:grid md:grid-cols-2 p-3 mt-10">
-            {selectedMenu?.items?.map((data,index)=>(
-            <div className="flex flex-col p-3 mt-4" key={index}>
-              <h1 className="text-white text-[14px] md:text-[26px] font-normal leading-[23.71px] font-Oswald">
-                {`${data.itemName}..........................$${data.price}`}
-              </h1>
-              <p className="font-KellySlab text-[#857878] font-normal text-[13px] md:text-[18px] md:pt-2">
-               {data.itemDescription}
-              </p>
-            </div>
-
+            {selectedMenu?.items?.map((data, index) => (
+              <div className="flex flex-col p-3 mt-4" key={index}>
+                <h1 className="text-white text-[14px] md:text-[26px] font-normal leading-[23.71px] font-Oswald">
+                  {`${data.itemName}..........................$${data.price}`}
+                </h1>
+                <p className="font-KellySlab text-[#857878] font-normal text-[13px] md:text-[18px] md:pt-2">
+                  {data.itemDescription}
+                </p>
+              </div>
             ))}
           </div>
           <img
